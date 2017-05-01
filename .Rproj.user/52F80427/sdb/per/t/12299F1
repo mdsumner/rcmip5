@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\nlibrary(shiny)\nlibrary(dplyr)\nlibrary(RSQLite)\nlibrary(DT)\n#f <-  file.path(getOption(\"default.datadir\"), \"data\", \"climate-cms.unsw.wikispaces.net\", \"file\", \"view\", \"cmip5_raijin.db\", \"553966810\", \"cmip5_raijin.db\") \n#file.copy(f, basename(f))\n#u <- \"http://climate-cms.unsw.wikispaces.net/file/view/cmip5_raijin.db/553966810/cmip5_raijin.db\"\n#download.file(u, basename(u), mode = \"wb\")\ncmip5 <- tbl(src_sqlite(\"cmip5_raijin.db\"), \"cmip5\") %>% collect() \ncmip5 <- cmip5  %>% select_(.dots = c(setdiff(names(cmip5), \"id\"), \"id\"))\n\nlibrary(shiny)\nshinyApp(\n  ui = fluidPage(DT::dataTableOutput('tbl')),\n  server = function(input, output) {\n    output$tbl = DT::renderDataTable(\n      cmip5, \n      filter = \"top\", class = 'cell-border stripe',\n      options = list(lengthMenu = c(15, 25, 50, 101), autoWidth = TRUE)\n    )\n  }\n)\n\n",
+    "created" : 1465309899050.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2269665240",
+    "id" : "12299F1",
+    "lastKnownWriteTime" : 1465313674,
+    "last_content_update" : 1465313674095,
+    "path" : "~/R_cmip5/cmip5.r",
+    "project_path" : "cmip5.r",
+    "properties" : {
+        "chunk_rendered_width" : "650"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,9 @@
+name: R_cmip5
+account: imas
+server: shinyapps.io
+appId: 107272
+bundleId: 474476
+url: https://imas.shinyapps.io/R_cmip5/
+when: 1465313829.81019
+asMultiple: FALSE
+asStatic: FALSE
